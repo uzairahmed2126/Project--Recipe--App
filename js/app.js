@@ -4,36 +4,66 @@ const mainContainer = document.getElementById("details-section");
 const msgContainer = document.getElementById("msg-container");
 
 async function getData(query) {
+   mainContainer.innerHTML = "";
   const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=
-${query}`
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
   );
   const data = await response.json();
   data.meals.forEach((meal) => {
     const createDiv = document.createElement("div");
     createDiv.classList.add("recipe");
-    createDiv.innerHTML = `<img class='img' src="${meal.strMealThumb}">
-    <h3>Name : ${meal.strMeal}</h3>
-    <h3>Area : ${meal.strArea}</h3>
-    <h3>Category : ${meal.strCategory}</h3>
-    <h3>Measure in grams : ${meal.strMeasure1}</h3>
-    <h3 id='instruction'>${meal.strInstructions}</h3>`;
+    // Image
+    const img = document.createElement("img");
+    img.classList.add("img");
+    img.src = meal.strMealThumb;
+    createDiv.append(img);
+    // Title
+    const name = document.createElement("h3");
+    name.textContent = `Name : ${meal.strMeal}`;
+    createDiv.append(name);
+    // Area
+    const area = document.createElement("h3");
+    area.textContent = `Area : ${meal.strArea}`;
+    createDiv.append(area);
+    // Category
+    const category = document.createElement("h3");
+    category.textContent = `Category : ${meal.strCategory}`;
+    createDiv.append(category);
+    // Measure
+    const measure = document.createElement("h3");
+    measure.textContent = `Measure in grams : ${meal.strMeasure1}`;
+    createDiv.append(measure);
+    // Instructions (Hidden until hover)
+    const instructions = document.createElement("p");
+    instructions.textContent = meal.strInstructions;
+    instructions.classList.add("more-info");
+    createDiv.append(instructions);
+
+    // Finally append to main container
     mainContainer.append(createDiv);
   });
-  console.log(data.meals);
 }
 function handleEvent(event) {
   event.preventDefault();
   const searchInput = text.value.trim();
-  if (searchInput === "") {
+  if (searchInput==="") {
     const createDiv = document.createElement("div");
+    const btn = document.createElement('button');
+    btn.type="submit";
+    btn.textContent = "Go For Search!";
+    btn.id = "popup-btn";
     createDiv.id = "popup";
-    createDiv.innerHTML = "Search Something!!";
+    createDiv.textContent = "Search Something!!";
+    createDiv.append(btn)
     document.body.append(createDiv);
+    btn.addEventListener("click",()=>{
+      createDiv.classList.add("toggle")  
+    })
   } else {
     msgContainer.classList.add("toggle");
     mainContainer.style.marginTop = "0px";
     getData(searchInput);
+    text.value = "";
   }
 }
 

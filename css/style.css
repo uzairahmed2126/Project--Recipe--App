@@ -2,89 +2,227 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#details-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 10px;
-  padding-left: 50px;
-  border-top: 4px solid lightcoral;
+
+body {
+  background: linear-gradient(to bottom, #f0f4f7, #dbe9ec);
+  height: 100vh;
 }
+
+/* Search Bar Container */
 #search-bar > div {
-  border-bottom: 4px solid lightcoral;
-  background: whitesmoke;
+  background: #eaf4f4;
+  border-bottom: 3px solid #7ebfb3;
+  padding: 30px 60px;
   display: flex;
-  padding: 30px;
   justify-content: space-between;
   align-items: center;
-  /* grid-template-columns: repeat(3,1fr); */
-  gap: 50px;
+  gap: 30px;
 }
+
+/* Logo */
 #logo {
-  color: darkred;
-  box-shadow: 1px 1px 4px 1px red;
-  border-radius: 10px 20px;
-  padding: 10px;
+  color: #336b5d;
+  font-size: 36px;
+  font-weight: bold;
+  background: #c3ebe4;
+  padding: 10px 20px;
+  border-radius: 20px 40px;
+  box-shadow: 2px 2px 6px rgba(51, 107, 93, 0.3);
 }
+
+/* Form */
 form {
-  box-shadow: 1px 1px 4px 1px darkblue;
-  border-radius: 10px 20px;
-  padding: 10px;
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 128, 128, 0.1);
 }
+
+/* Input Text */
 #txt {
   border: none;
   outline: none;
-  padding: 10px;
-  border-radius: 10px 20px;
-  box-shadow: 1px 1px 4px 1px lightcoral;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-#btn {
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 70px 1px 70px 10px;
-  box-shadow: 1px 1px 4px 1px lightcoral;
-  background: rgb(255, 94, 0);
-  color: white;
-  cursor: pointer;
-}
-#message {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 40px;
-  color: darkred;
-  text-transform: capitalize;
-}
-.recipe {
-  background: whitesmoke;
-}
-.recipe > .img {
-  width: 300px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  font-size: 16px;
 }
 
+/* Search Button */
+#btn {
+  padding: 10px 20px;
+  background: #4ea49d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#btn:hover {
+  background: #336b5d;
+}
+
+/* Message Container */
+#message {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 38px;
+  color: #4d5b5b;
+  text-shadow: 1px 1px #c9dcdc;
+  text-transform: capitalize;
+}
+
+/* Recipe Grid */
+#details-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  border-top: 3px solid #7ebfb3;
+}
+
+/* Individual Recipe Card */
+.recipe {
+  position: relative;
+  background: #fdfdfd;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+.recipe:hover {
+  transform: translateY(-5px);
+}
+
+/* Recipe Image */
+.recipe > .img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Optional: Title and Short Info */
+.recipe h3 {
+  margin-top: 10px;
+  color: #333;
+}
+.short-info {
+  color: #666;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* Hidden Extra Info */
+.more-info {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Reveal on Hover */
+.recipe:hover .more-info {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+/*  */
+.recipe {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.recipe:hover {
+  transform: translateY(-5px);
+}
+
+/* Default visible part */
+.recipe .short-info {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Hidden content */
+.recipe .more-info {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateY(10px);
+  color: #333;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Reveal on hover */
+.recipe:hover .more-info {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*  */
+/* Other Elements */
 .toggle {
   visibility: hidden;
   height: 0;
 }
+
 #popup {
   position: absolute;
   top: 0;
-  margin: 0;
-  padding: 0;
-  background: red;
-  opacity: 0.9;
-  color: white;
-  display: flex;
   width: 100%;
   height: 100%;
+  background: rgba(255, 87, 87, 0.95);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 999;
+  gap: 50px;
+}
+#popup-btn {
+  border: none;
+  background: rgb(66, 87, 66);
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(66, 87, 0.1);
+  }
+  /* position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 87, 87, 0.95);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 999; */
 }
 #instruction {
-    /* visibility: hidden; */
-    /* height: 0; */
+  padding: 20px;
+  background-color: #ecf7f7;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(51, 107, 93, 0.2);
 }
